@@ -1,0 +1,412 @@
+{
+  "version": "1.0.0",
+  "studioName": "RoForge Studio",
+  "modelTiers": {
+    "pro": "gemini-2.5-pro",
+    "fast": "gemini-2.5-flash"
+  },
+  "agents": [
+    {
+      "id": "Lead",
+      "name": "Lead",
+      "role": "Studio Manager & Orchestrator",
+      "department": "Direction",
+      "color": "#6366f1",
+      "modelTier": "pro",
+      "approvalMode": "plan",
+      "promptFile": "agents/prompts/lead.md",
+      "playbookChapters": [
+        "01-market-and-viral-hooks.md"
+      ],
+      "allowedMcpServers": [],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": false,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": false,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": []
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Primary conversational orchestrator. Converts studio goals into strict DAG task graphs, coordinates all 14 specialists, enforces quality/security gates, and surfaces only high-leverage human decisions in the Review Queue."
+    },
+    {
+      "id": "Pulse",
+      "name": "Pulse",
+      "role": "Market Trends, Competitor Teardown & Idea Scorer",
+      "department": "Strategy",
+      "color": "#ec4899",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/pulse.md",
+      "playbookChapters": [
+        "01-market-and-viral-hooks.md"
+      ],
+      "allowedMcpServers": [],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": false,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["docs/", "reports/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Analyzes live Roblox market metrics, competitor CCU, like ratios, GamePass pricing ladders, and produces 0-100 Idea Scorecards and Game Review teardowns."
+    },
+    {
+      "id": "Architect",
+      "name": "Architect",
+      "role": "Game Designer & Systems Architect",
+      "department": "Design",
+      "color": "#8b5cf6",
+      "modelTier": "pro",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/architect.md",
+      "playbookChapters": [
+        "02-first-two-minutes-and-retention.md",
+        "03-luau-architecture-and-datastores.md"
+      ],
+      "allowedMcpServers": [],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": false,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["docs/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Writes the full Game Design Document (docs/GDD.md) and machine-readable Technical Contract (docs/contracts.json) before any Luau code is written."
+    },
+    {
+      "id": "Builder",
+      "name": "Builder",
+      "role": "Core Gameplay, Persistence & Telemetry Engineer",
+      "department": "Engineering",
+      "color": "#06b6d4",
+      "modelTier": "pro",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/builder.md",
+      "playbookChapters": [
+        "02-first-two-minutes-and-retention.md",
+        "03-luau-architecture-and-datastores.md",
+        "05-monetization-and-shop-psychology.md",
+        "06-anti-exploit-and-asset-security.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["src/server/", "src/shared/", "default.project.json"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Writes --!strict Luau server-authoritative gameplay loops, crash-safe DataStores with session locking & BindToClose, first-2-minute onboarding hooks, AnalyticsService funnels, and ConfigService remote tuning."
+    },
+    {
+      "id": "Frame",
+      "name": "Frame",
+      "role": "Mobile-First UI / UX Engineer",
+      "department": "Engineering",
+      "color": "#14b8a6",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/frame.md",
+      "playbookChapters": [
+        "04-mobile-first-ui-and-gamepad.md",
+        "05-monetization-and-shop-psychology.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["src/client/", "src/shared/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Builds procedural mobile-first Roblox UI in src/client/ui/ using UDim2 scale, UIListLayout, UIAspectRatioConstraint, 44px+ touch targets, safe-area insets, gamepad focus, and TweenService polish."
+    },
+    {
+      "id": "Scenic",
+      "name": "Scenic",
+      "role": "3D World, Terrain, Lighting & Atmosphere Builder",
+      "department": "World",
+      "color": "#22c55e",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/scenic.md",
+      "playbookChapters": [
+        "07-world-polish-audio-vfx.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["src/server/world/", "src/shared/", "assets/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Constructs 3D levels, terrain, lighting moods, and procedural world layouts via Roblox Studio MCP and modular Luau builders while respecting mobile draw-call and streaming budgets."
+    },
+    {
+      "id": "Librarian",
+      "name": "Librarian",
+      "role": "Asset Catalog, 3D/Animation Sourcing & Backdoor Sanitizer",
+      "department": "World",
+      "color": "#84cc16",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/librarian.md",
+      "playbookChapters": [
+        "06-anti-exploit-and-asset-security.md",
+        "07-world-polish-audio-vfx.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio", "blender"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["assets/", "src/shared/", "reports/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Manages local catalog templates and Creator Store/Blender asset imports, enforcing strict backdoor sanitization to strip unauthorized scripts, require(assetId), and getfenv payloads."
+    },
+    {
+      "id": "Playtest",
+      "name": "Playtest",
+      "role": "Automated Studio QA & Cross-Place Tester",
+      "department": "Quality",
+      "color": "#eab308",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/playtest.md",
+      "playbookChapters": [
+        "03-luau-architecture-and-datastores.md",
+        "06-anti-exploit-and-asset-security.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["reports/", "art/", "media/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Executes static Luau checks and live Studio MCP playtests, inspects server/client output logs, verifies DataStore persistence, spawn safety, and reward anti-duplication, outputting reports/playtest.json."
+    },
+    {
+      "id": "KidTester",
+      "name": "KidTester",
+      "role": "Multi-Device Player Experience Tester (Phone, PC, Gamepad)",
+      "department": "Quality",
+      "color": "#f97316",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/kidtester.md",
+      "playbookChapters": [
+        "02-first-two-minutes-and-retention.md",
+        "04-mobile-first-ui-and-gamepad.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["reports/", "art/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Simulates a first-time player on mobile phones (844x390 & 667x375), PC, and gamepad, auditing time-to-first-fun, UI overlap, thumb ergonomics, readability, and onboarding friction in reports/kid_tester.json."
+    },
+    {
+      "id": "Reviewer",
+      "name": "Reviewer",
+      "role": "Security, Economy & Exploit Auditor",
+      "department": "Quality",
+      "color": "#ef4444",
+      "modelTier": "pro",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/reviewer.md",
+      "playbookChapters": [
+        "06-anti-exploit-and-asset-security.md"
+      ],
+      "allowedMcpServers": [],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": false,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["reports/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Independently audits scripts, RemoteEvents, ProcessReceipt idempotency, DataStore race conditions, rate limits, and dupe exploits. Blocks release on CRITICAL or HIGH findings in reports/security_review.json."
+    },
+    {
+      "id": "Merchant",
+      "name": "Merchant",
+      "role": "Monetization, Pricing Ladder & Live-Ops Economy Designer",
+      "department": "Revenue",
+      "color": "#f59e0b",
+      "modelTier": "pro",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/merchant.md",
+      "playbookChapters": [
+        "05-monetization-and-shop-psychology.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": true,
+        "canPublish": false,
+        "writablePaths": ["docs/", "src/shared/", "src/server/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Designs ethical 3-tier Robux pricing ladders, ShopConfig.luau, and MonetizationServer.server.luau (Starter Pack, Permanent Passes, Server Boosts, Gifting, Season Pass). Requires explicit Review Queue approval before live Open Cloud product creation."
+    },
+    {
+      "id": "Splash",
+      "name": "Splash",
+      "role": "Launch Art, Thumbnail A/B Pack, Store Copy & TikTok/Shorts Promo Maker",
+      "department": "Growth",
+      "color": "#d946ef",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/splash.md",
+      "playbookChapters": [
+        "01-market-and-viral-hooks.md",
+        "08-launch-liveops-and-scaling.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["art/", "media/", "docs/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": false,
+      "description": "Creates SEO store copy, icon and multi-variant A/B thumbnail specs, TikTok/Reels/Shorts promo scripts, and invokes the local ffmpeg promo assembler to deliver 9:16 clips to the Review Queue."
+    },
+    {
+      "id": "Liveops",
+      "name": "Liveops",
+      "role": "Post-Launch Analytics, Retention & Revenue Optimizer",
+      "department": "Growth",
+      "color": "#3b82f6",
+      "modelTier": "pro",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/liveops.md",
+      "playbookChapters": [
+        "02-first-two-minutes-and-retention.md",
+        "05-monetization-and-shop-psychology.md",
+        "08-launch-liveops-and-scaling.md"
+      ],
+      "allowedMcpServers": [],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": false,
+        "canUseOpenCloud": true,
+        "canPublish": false,
+        "writablePaths": ["reports/", "docs/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": false,
+      "description": "Benchmarks live game telemetry against 2026 Roblox targets (D1/D7/D30, CTR, payer %, ARPDAU) and diagnoses root bottlenecks in priority order to dispatch targeted improvements."
+    },
+    {
+      "id": "AudioVFX",
+      "name": "AudioVFX",
+      "role": "Juice, Audio & VFX Specialist",
+      "department": "Polish",
+      "color": "#a855f7",
+      "modelTier": "fast",
+      "approvalMode": "auto_edit",
+      "promptFile": "agents/prompts/audiovfx.md",
+      "playbookChapters": [
+        "07-world-polish-audio-vfx.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": false,
+        "canPublish": false,
+        "writablePaths": ["src/client/vfx/", "src/shared/"]
+      },
+      "defaultRequiresReview": false,
+      "customizableSlot": true,
+      "description": "Customizable Slot 14: Implements tactile game feel ('juice') with SoundService SFX bindings, ParticleEmitter/Beam/Highlight reward bursts, camera shake, and floating number popups."
+    },
+    {
+      "id": "Publisher",
+      "name": "Publisher",
+      "role": "Release, Version Checkpoints & Open Cloud Ops",
+      "department": "Operations",
+      "color": "#10b981",
+      "modelTier": "pro",
+      "approvalMode": "plan",
+      "promptFile": "agents/prompts/publisher.md",
+      "playbookChapters": [
+        "08-launch-liveops-and-scaling.md"
+      ],
+      "allowedMcpServers": ["Roblox_Studio"],
+      "permissions": {
+        "canReadWorkspace": true,
+        "canWriteWorkspace": true,
+        "canRunShell": false,
+        "canUseRobloxStudioMcp": true,
+        "canUseOpenCloud": true,
+        "canPublish": true,
+        "writablePaths": ["docs/", "reports/"]
+      },
+      "defaultRequiresReview": true,
+      "customizableSlot": true,
+      "description": "Customizable Slot 15: Manages Git release tags, staged Test Place vs. Production Place checklists, patch notes, and Open Cloud publishing. HARD RULE: Never publishes live or changes prices without explicit Review Queue approval."
+    }
+  ]
+}
+

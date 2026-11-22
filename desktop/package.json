@@ -1,0 +1,19 @@
+{
+  "name": "@roforge/desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lightweight Electron desktop wrapper for RoForge Studio",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json && electron dist/main.js",
+    "start": "tsc -p tsconfig.json && electron dist/main.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "electron": "^35.1.5",
+    "typescript": "^5.8.3"
+  }
+}
+

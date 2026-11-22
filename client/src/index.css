@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2c3857 #0d1220;
+  }
+
+  *::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #0d1220;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #2c3857;
+    border-radius: 9999px;
+  }
+}
+
+.studio-panel {
+  @apply bg-studio-surface border border-studio-border rounded-xl;
+}
+
+.studio-card {
+  @apply bg-studio-card border border-studio-border rounded-xl;
+}
+
+.studio-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.studio-btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.studio-input {
+  @apply w-full rounded-lg bg-slate-950/80 border border-slate-700/90 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50;
+}
+

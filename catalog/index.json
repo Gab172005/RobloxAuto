@@ -1,0 +1,95 @@
+{
+  "version": "1.0.0",
+  "description": "RoForge Studio vetted local Luau systems, monetization templates, mobile UI patterns, and world kits.",
+  "items": [
+    {
+      "id": "datastore-profile-manager",
+      "name": "Crash-Safe DataStore Profile Manager",
+      "category": "persistence",
+      "targetPath": "src/server/modules/DataStoreProfileManager.luau",
+      "sourcePath": "catalog/templates/DataStoreProfileManager.luau",
+      "agents": ["Builder", "Librarian"],
+      "tags": ["datastore", "session-lock", "bind-to-close", "strict-luau", "retry"],
+      "sanitized": true,
+      "description": "Production --!strict DataStore manager with UpdateAsync session locking, exponential backoff retries, schema reconciliation, periodic autosave, and BindToClose protection."
+    },
+    {
+      "id": "process-receipt-handler",
+      "name": "Idempotent ProcessReceipt & Monetization Server",
+      "category": "monetization",
+      "targetPath": "src/server/MonetizationServer.server.luau",
+      "sourcePath": "catalog/templates/ProcessReceiptHandler.luau",
+      "agents": ["Merchant", "Builder", "Librarian"],
+      "tags": ["monetization", "process-receipt", "idempotent", "gamepass", "server-boost", "gifting"],
+      "sanitized": true,
+      "description": "Single-source MarketplaceService.ProcessReceipt handler with persistent receipt deduplication, NotProcessedYet failure recovery, GamePass ownership cache, Server-Wide Boosts, and Economy Analytics."
+    },
+    {
+      "id": "daily-reward-system",
+      "name": "7-Day Escalating Daily Reward & Streak System",
+      "category": "retention",
+      "targetPath": "src/server/modules/DailyRewardSystem.luau",
+      "sourcePath": "catalog/templates/DailyRewardSystem.luau",
+      "agents": ["Builder", "Liveops", "Librarian"],
+      "tags": ["retention", "daily-streak", "d1", "d7", "utc"],
+      "sanitized": true,
+      "description": "UTC-day streak manager with 48-hour grace window, escalating 7-day rewards, VIP multiplier hook, and double-claim atomic guard."
+    },
+    {
+      "id": "starter-pack-timer",
+      "name": "First-Session Starter Pack Timer & Offer Guard",
+      "category": "monetization",
+      "targetPath": "src/server/modules/StarterPackTimer.luau",
+      "sourcePath": "catalog/templates/StarterPackTimer.luau",
+      "agents": ["Merchant", "Builder", "Librarian"],
+      "tags": ["starter-pack", "conversion", "impulse-tier", "timer"],
+      "sanitized": true,
+      "description": "Server-authoritative 25-minute first-session Starter Pack eligibility and expiry controller with ConfigService A/B price tier hook."
+    },
+    {
+      "id": "analytics-wrapper",
+      "name": "AnalyticsService & ConfigService Wrapper",
+      "category": "telemetry",
+      "targetPath": "src/server/modules/AnalyticsWrapper.luau",
+      "sourcePath": "catalog/templates/AnalyticsWrapper.luau",
+      "agents": ["Builder", "Liveops", "Librarian"],
+      "tags": ["analytics", "onboarding-funnel", "economy", "config-service", "ab-testing"],
+      "sanitized": true,
+      "description": "Studio-safe wrapper for AnalyticsService (LogOnboardingFunnelStepEvent, LogFunnelStepEvent, LogEconomyEvent) and ConfigService live A/B remote parameters."
+    },
+    {
+      "id": "mobile-shop-ui-template",
+      "name": "Mobile-First Shop Modal & HUD Template",
+      "category": "ui",
+      "targetPath": "src/client/ui/MobileShopUI.luau",
+      "sourcePath": "catalog/templates/MobileShopUITemplate.luau",
+      "agents": ["Frame", "Merchant", "Librarian"],
+      "tags": ["ui", "mobile-first", "667x375", "gamepad", "tween", "shop"],
+      "sanitized": true,
+      "description": "Phone-first procedural Roblox Shop ScreenGui using UDim2 scale, UIAspectRatioConstraint, 44px+ touch targets, CoreUISafeInsets, TweenService polish, and gamepad focus navigation."
+    },
+    {
+      "id": "remote-rate-limiter",
+      "name": "Server RemoteEvent Token-Bucket Rate Limiter",
+      "category": "security",
+      "targetPath": "src/server/modules/RemoteRateLimiter.luau",
+      "sourcePath": "catalog/templates/RemoteRateLimiter.luau",
+      "agents": ["Builder", "Reviewer", "Librarian"],
+      "tags": ["security", "anti-exploit", "rate-limit", "validation"],
+      "sanitized": true,
+      "description": "Lightweight per-player token-bucket limiter and finite-number/string payload guards preventing RemoteEvent spam and NaN/negative-number exploits."
+    },
+    {
+      "id": "audio-vfx-juice",
+      "name": "Tactile Audio & VFX Juice Controller",
+      "category": "vfx",
+      "targetPath": "src/client/vfx/AudioVFXJuice.luau",
+      "sourcePath": "catalog/templates/AudioVFXJuice.luau",
+      "agents": ["AudioVFX", "Frame", "Librarian"],
+      "tags": ["audio", "vfx", "juice", "particles", "camera-shake", "floating-numbers"],
+      "sanitized": true,
+      "description": "Mobile-safe client juice toolkit featuring pitch-varied sound pooling, ParticleEmitter Emit() bursts, floating BillboardGui numbers, Highlight pulses, and reduced-motion-aware camera trauma."
+    }
+  ]
+}
+
